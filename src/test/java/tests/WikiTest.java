@@ -13,13 +13,36 @@ import static io.qameta.allure.Allure.step;
 public class WikiTest extends TestBase {
 
     @Test
-    @DisplayName("Check Text element in sample ios app")
-    void searchTest() {
+    @DisplayName("Check Alert")
+    void alertTest() {
         sleep(10);
-        step("Click on 'Alert' button", () ->
+        step("Click on Alert button", () ->
                 $(MobileBy.AccessibilityId("Alert Button")).click());
 
-        step("Check output field", () ->
-                $(MobileBy.AccessibilityId("Text Output")).shouldHave(Condition.text("Alert")));
+        step("Check for a Alert", () ->
+                $(MobileBy.AccessibilityId("Alert")).should(Condition.appear));
+
+        step("Check for a OK button", () ->
+                $(MobileBy.AccessibilityId("OK")).should(Condition.appear));
+
+        step("Close Alert", () -> {
+            $(MobileBy.AccessibilityId("OK")).click();
+            $(MobileBy.AccessibilityId("OK")).should(Condition.disappear);
+        });
+    }
+
+    @Test
+    @DisplayName("Check input Text")
+    void inputTextTest() {
+        sleep(10);
+        step("Click on Text button", () ->
+                $(MobileBy.AccessibilityId("Text Button")).click());
+
+        String inputValue = "Good day!";
+        step("Enter the text", () ->
+                $(MobileBy.AccessibilityId("Text Input")).val(inputValue).pressEnter());
+
+        step("Check the displayed Text", () ->
+                $(MobileBy.AccessibilityId("Text Output")).shouldHave(Condition.text(inputValue)));
     }
 }
