@@ -15,4 +15,7 @@ public interface IosConfig extends Config {
 
     @Key("os_version")
     String osVersion();
+
+    @Key("app")
+    String app();
 }

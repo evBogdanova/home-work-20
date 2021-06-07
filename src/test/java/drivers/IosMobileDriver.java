@@ -30,6 +30,7 @@ public class IosMobileDriver implements WebDriverProvider {
         DesiredCapabilities capabilities = commonCapabilities();
         capabilities.setCapability("device", iosConfig.device());
         capabilities.setCapability("os_version", iosConfig.osVersion());
+        capabilities.setCapability("app", iosConfig.app());
 
         return new IOSDriver(BrowserstackHelper.getBrowserstackUrl(), capabilities);
     }

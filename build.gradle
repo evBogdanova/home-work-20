@@ -57,15 +57,3 @@ tasks.withType(Test) {
         showStackTraces true
     }
 }
-
-task test_android(type: Test) {
-    useJUnitPlatform {
-        includeTags 'selenide_android'
-    }
-}
-
-task test_ios(type: Test) {
-    useJUnitPlatform {
-        includeTags 'selenide_ios'
-    }
-}
